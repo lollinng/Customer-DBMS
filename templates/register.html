@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Registeration Page</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+		<link rel="stylesheet" type="text/css" href="../static/css/style.css" />
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" />
+		<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+		<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+	</head>
+	<body>
+		<div class="container">
+			<div class="row px-3">
+				<div class="col-lg-10 col-xl-5 card flex-row mx-auto px-0">
+					<div class="card-body">
+						<h4 class="title text-center mt-4">Creating a new account</h4>
+						<form class="form-box px-3" method="POST" action="{{url_for('register')}}">
+							<div class="form-input">
+								<span><i class="fa fa-user-circle"></i></span>
+								<input type="text" name="username" placeholder="User name" tabindex="10" required />
+							</div>
+							<div class="form-input">
+								<span><i class="fa fa-envelope-o"></i></span>
+								<input type="email" name="email" placeholder="Email Address" tabindex="10" required />
+							</div>
+							<div class="form-input">
+								<span><i class="fa fa-key"></i></span>
+								<input type="password" name="pass1" placeholder="Password" required />
+							</div>
+							<div class="form-input">
+								<span><i class="fa fa-key"></i></span>
+								<input type="password" name="pass2" placeholder="Confirm Password" required />
+							</div>
+							<div class="form-input">
+								<span><i class="fa fa-phone" aria-hidden="true"></i></span>
+								<input type="tel" name="phone" placeholder="phone no." tabindex="10" required />
+							</div>
+							{% with messages = get_flashed_messages() %} {% if messages %} {% for message in messages %}
+							<div class="alert alert-danger alert-dismissable" role="alert">
+								<button type="button" class="close" data-dismiss="alert" aria-label="close">
+									<span aria-hidden="true">x</span>
+								</button>
+								{{message}}
+							</div>
+							{% endfor %} {% endif %} {% endwith %}
+							<div class="mb-3">
+								<button type="submit" class="btn btn-block text-uppercase" onclick="ValidateEmail">Sign Up</button>
+							</div>
+							<hr class="my-4" />
+							<div class="text-center mb-2">
+								Already have an account?
+								<a href="{{url_for('login')}}" class="register-link"> Log In </a>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<script
+			src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+			integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+			crossorigin="anonymous"
+		></script>
+		<script
+			src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+			integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+			crossorigin="anonymous"
+		></script>
+		<script
+			src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+			integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+			crossorigin="anonymous"
+		></script>
+		<script>
+			function ValidateEmail(mail) {
+				if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(myForm.emailAddr.value)) {
+					return true;
+				}
+				alert("You have entered an invalid email address!");
+				return false;
+			}
+		</script>
+	</body>
+</html>

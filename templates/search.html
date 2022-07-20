@@ -1,0 +1,138 @@
+{% extends 'base/base.html' %}
+{% include 'base/header.html' %}
+
+
+{% block title %} Home {% endblock %}
+
+
+
+{% block body %}
+
+<div class="container">
+    <div class="col">
+        <div class="col md-12">
+            <div class="jumbotron p-3">
+                <h2>Search <b>Customer Information</b>
+                <form class="form-inline float-right" method=POST action="{{url_for('search')}}">
+                    <input class="form-control mr-sm-2" type="search" name ='data' placeholder="Search" aria-label="Search">
+                    <button class="btn btn-warning btn-xs" type="submit">Search</button>
+                    </h2>
+                    <form>
+                        
+                        Search by Email  <input style="margin-right:40px" type="checkbox" value="1" name="mycheckbox">
+                        Serach by Name  <input style="margin-right:40px" type="checkbox" value="2" name="mycheckbox">
+                        Serach by Phone no.  <input style="margin-right:40px" type="checkbox" value="3" name="mycheckbox">
+                        Serach by ProductID  <input style="margin-right:40px" type="checkbox" value="4" name="mycheckbox">
+
+                        <div style="margin: 20px;">
+                            Show all purchases greater than &emsp13;
+                            <input  size=5 type="number" name="val1" tabindex="0">
+                            &emsp14;
+                            <input type="checkbox" value="5" name="mycheckbox">
+                            &emsp;&emsp;&emsp;&emsp;
+                            Show all purchases less than &emsp13;
+                            <input size=5 type="number" name="val2" tabindex="1">
+                            &emsp14;
+                            <input type="checkbox" value="6" name="mycheckbox">
+                        </div>
+                    </form>
+                </form> 
+                    
+            </div>   
+        </div>
+
+        {%if customer != null and page_type != 'index' %}
+        <div class="container">
+            <div class="row">
+                <div class="col md-12">
+                    <div class="jumbotron p-3">
+                        <table class="table table-hover table-dark">
+                            <tr>
+                                <th style="text-align:center">Category</th>
+                                <th style="text-align:center">Data</th>
+                            </tr>
+                            <tr>
+                                <th style="text-align:center">Name</th>
+                                <td style="text-align:center">{{customer['name']}}</td>
+                            </tr>
+                            <tr>
+                                <th style="text-align:center">Email</th>
+                                <td style="text-align:center">{{customer['email']}}</td>
+                                
+                            </tr>
+                            <tr>
+                                <th style="text-align:center">Phone no.</th>
+                                <td style="text-align:center">{{customer['phone']}}</td>
+                            </tr>
+                            {% if type =='admin'%}
+                                <tr>
+                                    <th style="text-align:center">no. of products</th>
+                                    <td style="text-align:center">{{customer['no_products']}}</td>
+                                </tr>
+                                {% for i in customer['products']%}
+                                    <tr>
+                                        <th style="text-align:center">Product:</th>
+                                        <td style="text-align:center">
+                                            id: {{ i['product']}} ,
+                                            Name: {{i['productname']}} ,
+                                            Price: {{i['productprice']}} ,
+                                            catID: {{i['category']}}
+                                        </td>
+                                    </tr>
+                                {%endfor%}
+                                    <tr>
+                                        <th style="text-align:center">Shoppping value</th>
+                                        <td style="text-align:center">{{customer['shopping_value']}}</td>
+                                    </tr>
+                            {% endif %}
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+        
+        {%if customer != null and page_type == 'index' %}
+        <div class="container">
+            <div class="col  md-12">
+  
+                <div class="jumbotron p-3">
+                    <table class="table table-hover table-dark">
+                        <tr>
+                            <th>Info</td>
+                            <th>Name</td>
+                            <th>Email</td>
+                            <th>Phone</td>
+                            <th>No. of Product</td>
+                            <th>Shopping Value</td>
+                        </tr>
+
+                        {% for row in customer %}
+                            <tr>
+                                <td>
+                                    <a href="/details/{{row['email']}}">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right-square-fill" viewBox="0 0 16 16" style="color:White">
+                                    <path d="M0 14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2a2 2 0 0 0-2 2v12zm4.5-6.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5a.5.5 0 0 1 0-1z"/>
+                                    </svg>
+                                    </a>
+                                </td>
+                                <td>{{row['name']}}</td>
+                                <td>{{row['email']}}</td>
+                                <td>{{row['phone']}}</td>
+                                <td>{{row['no_products']}}</td>
+                                <td>{{row['shopping_value']}}</td>
+                            </tr>
+                        {% endfor %}
+                    </table>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+
+
+    </div>
+</div>
+
+
+
+{% endblock %}

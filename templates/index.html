@@ -1,0 +1,95 @@
+{% extends 'base/base.html' %}
+{% include 'base/header.html' %}
+
+
+
+{% block title %} Home {% endblock %}
+
+
+
+{% block body %}
+
+<div class="container">
+    <div class="col">
+
+        <div class="col md-12">
+            <div class="jumbotron p-3">
+                <h2>Search <b>Customer Information</b>
+                <form class="form-inline float-right" method=POST action="{{url_for('search')}}">
+                    <input class="form-control mr-sm-2" type="search" name ='email'placeholder="Search" aria-label="Search">
+                    <button class="btn btn-warning btn-xs" type="submit">Search</button>
+                </form> 
+                </h2>
+            </div>
+            
+        </div>
+        
+
+        <div class="col md-12">
+            <div class="jumbotron p-3">
+                
+                <!-- the first heading -->
+                <h2>Manage <b>Customer Information</b>
+                    <a style='text-decoration: none;color: inherit;' href="{{ url_for('customer')}}">
+                    <button type="button" class="btn btn-success float-right" data-toggle="modal" >
+                    Add New Customer
+                </a>
+                </h2>
+
+                {% with messages = get_flashed_messages() %}
+                {% if messages %}         
+                    {% for message in messages %}
+                        <div class="alert alert-success alert-dismissable" role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="close">
+                                <span aria-hidden="true">x</span>
+                            </button>
+                            {{message}}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+                {% endwith %}
+
+                <!-- table -->
+                <table class="table table-hover table-dark">
+                    <!-- heading -->
+                    <tr>
+                        <th>Info</td>
+                        <th>Name</td>
+                        <th>Email</td>
+                        <th>Phone</td>
+                        <th>No. of Product</td>
+                        <th>Shopping Value</td>
+                        <th>Action</td>
+                    </tr>
+                    {% for row in customer %}
+                        <tr>
+                             <!--pop up button  -->
+                            <td>
+                                <a href="/details/{{row['email']}}">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right-square-fill" viewBox="0 0 16 16" style="color:White">
+                                <path d="M0 14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2a2 2 0 0 0-2 2v12zm4.5-6.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5a.5.5 0 0 1 0-1z"/>
+                                </svg>
+                                </a>
+                            </td>
+                        
+                            <td>{{row['name']}}</td>
+                            <td>{{row['email']}}</td>
+                            <td>{{row['phone']}}</td>
+                            <td>{{row['no_products']}}</td>
+                            <td>{{row['shopping_value']}}</td>
+
+                            <td>
+                                <a href="/update/{{row['email']}}" class="btn btn-warning btn-xs">Edit</a>
+                                <a href="/delete/{{row['email']}}" class="btn btn-danger btn-xs" onclick="return confirm('Are You Sure To Delete ?')">Delete</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+ 
+
+                </table>
+            </div>            
+        </div>
+    </div>
+
+
+    {% endblock %}

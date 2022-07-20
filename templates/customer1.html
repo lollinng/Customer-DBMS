@@ -1,0 +1,79 @@
+{% extends 'base/base.html' %}
+{% include 'base/header.html' %}
+
+
+
+{% block title %} Customer Details {% endblock %}
+
+
+
+{% block body %}
+
+
+
+<div class="container">
+    <div class="row">
+        <div class="col md-12">
+            <div class="jumbotron p-3">
+                <h2>Add <b>New Customer Information</b></h2>
+                <form class="form-box px-3" style='margin-top: 50px;' method="POST" action="{{url_for('customer1',data=data)}}">
+                    <div class='row mt-2 col-md-12' style="margin: 30px;">
+                        <th> Enter the Name&emsp;&emsp;&emsp;&emsp;</th>
+                        <div class="form-input">
+                            {{data[0]}}
+                        </div>
+                    </div>
+                    <div class='row mt-2 col-md-12' style="margin: 30px;">
+                        <th> Email&emsp;&emsp;&emsp;&emsp;</th>
+                        <div class="form-input">
+                            {{data[1]}}
+                        </div>
+                    </div>
+                    <div class='row mt-2 col-md-12' style="margin: 30px;">
+                        <th> Enter the Phone&emsp;&emsp;&emsp;&emsp;</th>
+                        <div class="form-input">
+                            {{data[2]}}
+                        </div>
+                    </div>
+                    <div class='row mt-2 col-md-12' style="margin: 30px;">
+                        <th> Age :&emsp;&emsp;&emsp;&emsp;</th>
+                        <div class="form-input">
+                            {{data[3]}}
+                        </div>
+                    </div>
+                    <div class='row mt-2 col-md-12' style="margin: 30px;">
+                        <th> Gender&emsp;&emsp;&emsp;&emsp;</th>
+                        <div class="form-input">
+                            {{data[4]}}
+                        </div>
+                    </div>
+                    <div class='row mt-2 col-md-12' style="margin: 30px;">
+                        <th> Enter the Number of Products&emsp;&emsp;&emsp;&emsp;</th>
+                        <div class="form-input">
+                            {{data[5]}}
+                        </div>
+                    </div>
+                    
+                
+
+                    {% for i in range(data[5])%}
+                        <div class='row mt-2 col-md-12' style="margin: 30px;">
+                            <th> Enter the Name of the product {{i+1}} :&emsp;&emsp;&emsp;&emsp;</th>
+                            <div class="form-input">
+                                <input type="text" name="no{{i}}" placeholder="Name of the product" tabindex="10">
+                            </div>
+                        </div>
+                    {%endfor%}
+                    
+                    <div class="form-group mb-3" style="height:40px; width:100px; margin-left:500px ;">
+                        <button class="btn btn-primary text-uppercase" type="submit">Add</button>
+                    </div>
+  
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,78 @@
+{% extends 'base/base.html' %}
+{% include 'base/header.html' %}
+
+
+
+{% block title %} Customer Details {% endblock %}
+
+
+
+{% block body %}
+
+
+
+<div class="container">
+    <div class="row">
+        <div class="col md-12">
+            <div class="jumbotron p-3">
+                <h2>Add <b>New Customer Information</b></h2>
+                <form class="form-box px-3" style="margin-top: 50px;" method="POST" action="{{url_for('customer')}}">
+                    <div class='row mt-2 col-md-12' style="margin: 30px;">
+                        <th> Enter the Name&emsp;&emsp;&emsp;&emsp;</th>
+                        <div class="form-input">
+                            <input type="text" name="name" placeholder="Name" tabindex="10" required>
+                        </div>
+                    </div>
+                    <div class='row mt-2 col-md-12' style="margin: 30px;">
+                        <th> Enter the Email&emsp;&emsp;&emsp;&emsp;</th>
+                        <div class="form-input">
+                            <input type="email" name="email" placeholder="Email Address" tabindex="10" required>
+                        </div>
+                    </div>
+                    <div class='row mt-2 col-md-12' style="margin: 30px;">
+                        <th> Enter the Phone&emsp;&emsp;&emsp;&emsp;</th>
+                        <div class="form-input">
+                            <input type="tel" name="phone" placeholder="phone" tabindex="10" required>
+                        </div>
+                    </div>
+                    <div class='row mt-2 col-md-12' style="margin: 30px;">
+                        <th> Enter the Age&emsp;&emsp;&emsp;&emsp;</th>
+                        <div class="form-input">
+                            <input type="number" name="age" placeholder="Age" tabindex="10" required>
+                        </div>
+                    </div>
+                    <div class='row mt-2 col-md-12' style="margin: 30px;">
+                        <th> Enter the Gender&emsp;&emsp;&emsp;&emsp;</th>
+                        <div class="form-input">
+                            <input type="text" name="gender" placeholder="Gender" tabindex="10" required>
+                        </div>
+                    </div>
+                    <div class='row mt-2 col-md-12' style="margin: 30px;">
+                        <th> Enter the Number of Products&emsp;&emsp;&emsp;&emsp;</th>
+                        <div class="form-input">
+                            <input type="number" name="numprod" placeholder="Number of Products" tabindex="10" required>
+                        </div>
+                    </div>
+                    <div class="form-group mb-3" style="height:40px; width:100px; margin-left:500px ;">
+                        <button class="btn btn-primary text-uppercase" type="submit">Add</button>
+                    </div>
+                </form>
+
+
+                {%if data != 0%}
+                    {% for i in data%}
+                        <div class='row mt-2 col-md-12' style="margin: 30px;">
+                            <th> Enter the Name of the product&emsp;&emsp;&emsp;&emsp;</th>
+                            <div class="form-input">
+                                <input type="text" name="no.{{i}}" placeholder="Name of the product" tabindex="10">
+                            </div>
+                        </div>
+                    {%endfor%}
+                {%endif%}
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

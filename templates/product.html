@@ -1,0 +1,47 @@
+{% extends 'base/base.html' %}
+{% include 'base/header.html' %}
+
+
+{% block title %} Home {% endblock %}
+
+
+
+{% block body %}
+
+<div class="container">
+    <div class="col">
+        <div class="col md-12">
+            <div class="jumbotron p-3">
+                <h2>Search By <b>Product name</b>
+                <div class="form-inline float-right">
+                    <input class="search form-control mr-sm-2" type="search" name ='data' placeholder="Search" aria-label="Search">
+                    <button class="jq btn btn-warning btn-xs">Search</button>
+                    </h2>
+                </div> 
+                    
+            </div>   
+        </div>
+
+        <div class="container">
+            <div class="col  md-12">
+  
+                <div class="jumbotron p-3">
+                    <table class="table table-hover table-dark" id="myTable">
+                        <tr>
+                            <!-- <th>Info</td> -->
+                            <th>Name</td>
+                            <th>Email</td>
+                            <th>Phone</td>
+                            <th>No. of Product</td>
+                            <th>Shopping Value</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock %}

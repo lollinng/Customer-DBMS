@@ -1,0 +1,94 @@
+{% extends 'base/base.html' %}
+{% include 'base/header.html' %}
+
+
+
+{% block title %} Customer Details {% endblock %}
+
+
+
+{% block body %}
+
+
+
+<div class="container">
+    <div class="row">
+        <div class="col md-12">
+            <div class="jumbotron p-3">
+                <h2>Edit <b>Customer Information</b></h2>
+                <form class="form-box px-3" style='margin-top: 50px;' method="POST" action="{{url_for('update',email=data['email'])}}">
+                    <div class="form-group  row mt-2 col-md-12">
+                        <label>Enter the Name:</label>
+                        <input type="text" class="form-control" name="name" value="{{data['name']}}">
+                    </div>
+                    <div class="form-group  row mt-2 col-md-12">
+                        <label>Enter the Email:</label>
+                        <input type="email" class="form-control" name="email" value="{{data['email']}}">
+                    </div>
+                    <div class="form-group  row mt-2 col-md-12">
+                        <label>Enter the Phone:</label>
+                        <input type="number" class="form-control" name="phone" value="{{data['phone']}}">
+                    </div>
+                    <div class="form-group  row mt-2 col-md-12">
+                        <label>Enter the Age:</label>
+                        <input type="number" class="form-control" name="age" value="{{data['age']}}">
+                    </div>
+                    <div class="form-group  row mt-2 col-md-12">
+                        <label>Enter the Gender:</label>
+                        <input type="text" class="form-control" name="gender" value="{{data['Gender']}}">
+                    </div>
+                    <div class="form-group  row mt-2 col-md-12">
+                        <label>Enter the number of Products:</label>
+                        <input type="number" class="form-control" name="prod_no" value="{{data['no_products']}}">
+                    </div>
+                    {% for i in range(data['no_products'])%}
+                        <div class="form-group  row mt-2 col-md-12">
+                            <label>Product {{i+1}}:</label>
+                            <input type="text" class="form-control" name="no{{i}}" value="{{data['products'][i]['productname']}}">
+                        </div>
+                    {%endfor%}
+                    <div class="form-group mb-3" style="height:40px; width:100px; margin-left:500px ;">
+                        <button class="btn btn-primary text-uppercase" type="submit">Add</button>
+                    </div>
+                </form>
+                <!-- <form class="form-box px-3" style='margin-top: 50px;' method="POST" action="{{url_for('add_prod',email=data['email'])}}">
+                    {%if add == null%}
+                        <div class="form-group  row mt-2 col-md-12">
+                            <label>How many products u want to add ?:</label>
+                            <input type="number" class="form-control" name="add" value='0'>
+                        </div>
+                        <div class="form-group mb-3" style="height:40px; width:100px; margin-left:500px ;">
+                            <button class="btn btn-primary text-uppercase" type="submit">Add</button>
+                        </div>
+                    {%endif%}
+                </form>
+                <form class="form-box px-3" style='margin-top: 50px;' method="POST" action="{{url_for('add_prod1',email=data['email'])}}">
+                    {%if add != null%}
+                        {% for i in range(add)%}
+                                <div class="form-group  row mt-2 col-md-12">
+                                    <label>Product {{i+1}}:</label>
+                                    <input type="text" class="form-control" name="no{{i}}" >
+                                </div>
+                        {%endfor%}
+                        <div class="form-group mb-3" style="height:40px; width:100px; margin-left:500px ;">
+                            <button class="btn btn-primary text-uppercase" type="submit">Add</button>
+                        </div>
+                    {%endif%} 
+                    
+                
+                </form> -->
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
+
+<!-- <script type="text/javascript">
+    $("#somebutton").click(function () {
+    $("#container").append('<div class="module_holder"><div class="module_item"><img src="images/i-5.png" alt="Sweep Stakes"><br>sendSMS</div></div>');
+});
+</script> -->
+ 

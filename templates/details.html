@@ -1,0 +1,81 @@
+{% extends 'base/base.html' %}
+{% include 'base/header.html' %}
+
+
+
+{% block title %} Customer Details {% endblock %}
+
+
+
+{% block body %}
+
+
+
+<div class="container">
+    <div class="row">
+        <div class="col md-12">
+            <div class="jumbotron p-3">
+                <table class="table table-hover table-dark">
+                    <tr>
+                        <th style="text-align:center">Field</th>
+                        <th style="text-align:center">Data</th>
+                    </tr>
+                    <tr>
+                        <th style="text-align:center">Name</th>
+                        <td style="text-align:center">{{customer['name']}}</td>
+                    </tr>
+                    <tr>
+                        <th style="text-align:center">Email</th>
+                        <td style="text-align:center">{{customer['email']}}</td>
+                        
+                    </tr>
+                    <tr>
+                        <th style="text-align:center">Phone Number</th>
+                        <td style="text-align:center">{{customer['phone']}}</td>
+                    </tr>
+                    <tr>
+                        <th style="text-align:center">Age</th>
+                        <td style="text-align:center">{{customer['age']}}</td>
+                    </tr>
+                    <tr>
+                        <th style="text-align:center">Gender</th>
+                        <td style="text-align:center">{{customer['Gender']}}</td>
+                    </tr>
+                    {% if type =='admin'%}
+                        <tr>
+                            <th style="text-align:center">Count of Products</th>
+                
+                            
+                            <td style="text-align:center">{{customer['no_products']}} &emsp14;
+                                <a href="/table/{{customer['email']}}">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right-square-fill" viewBox="0 0 16 16" style="color:White">
+                                <path d="M0 14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2a2 2 0 0 0-2 2v12zm4.5-6.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5a.5.5 0 0 1 0-1z"/>
+                                </svg>
+                                </a>
+                            </td>
+                            
+                        </tr>
+                        <!-- {% for i in customer['products']%}
+                            <tr>
+                                <th style="text-align:center">Product :</th>
+                                <td style="text-align:center">
+                                    id: {{ i['product']}} ,
+                                    Name: {{i['productname']}} ,
+                                    Price: {{i['productprice']}} ,
+                                    catID: {{i['category']}}
+                                </td>
+                            </tr>
+                        {%endfor%} -->
+                            <tr>
+                                <th style="text-align:center">Shoppping value</th>
+                                <td style="text-align:center">{{customer['shopping_value']}}</td>
+                            </tr>
+                    {% endif %}
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
